@@ -3,8 +3,23 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Optional
 import uvicorn
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 app = FastAPI(title="DocBot Service API")
+
+# Configuration from environment variables
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "openai")
+MODEL_NAME = os.getenv("MODEL_NAME", "gpt-3.5-turbo")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+GOOGLE_AI_API_KEY = os.getenv("GOOGLE_AI_API_KEY")
+HUGGINGFACE_API_KEY = os.getenv("HUGGINGFACE_API_KEY")
+MAX_FILE_SIZE_MB = int(os.getenv("MAX_FILE_SIZE_MB", "10"))
+MAX_UPLOAD_FILES = int(os.getenv("MAX_UPLOAD_FILES", "10"))
 
 # Configure CORS
 app.add_middleware(
@@ -37,7 +52,12 @@ async def root():
 
 @app.get("/health")
 async def health():
-    return {"status": "healthy"}
+    return {
+        "status": "healthy",
+        "llm_provider": LLM_PROVIDER,
+        "model_name": MODEL_NAME,
+        "api_key_configured": bool(OPENAI_API_KEY or ANTHROPIC_API_KEY or GOOGLE_AI_API_KEY)
+    }
 
 @app.post("/api/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):

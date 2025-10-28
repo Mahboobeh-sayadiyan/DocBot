@@ -8,6 +8,8 @@ services:
       - "8000:8000"
     volumes:
       - ./service:/app
+    env_file:
+      - ./service/.env
     environment:
       - PYTHONUNBUFFERED=1
     networks:
