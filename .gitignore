@@ -1,0 +1,101 @@
+# Operating System
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Docker
+docker-compose.override.yml
+
+# ==========================================
+# UI (React/Webpack) specific
+# ==========================================
+
+# Dependencies
+ui/node_modules/
+ui/.pnp
+ui/.pnp.js
+
+# Build output
+ui/dist/
+ui/build/
+ui/.webpack/
+
+# Testing
+ui/coverage/
+
+# ==========================================
+# Service (Python) specific
+# ==========================================
+
+# Python bytecode
+service/__pycache__/
+service/*.py[cod]
+service/*$py.class
+
+# C extensions
+service/*.so
+
+# Distribution / packaging
+service/.Python
+service/build/
+service/develop-eggs/
+service/dist/
+service/downloads/
+service/eggs/
+service/.eggs/
+service/lib/
+service/lib64/
+service/parts/
+service/sdist/
+service/var/
+service/wheels/
+service/*.egg-info/
+service/.installed.cfg
+service/*.egg
+
+# Virtual environments
+service/venv/
+service/env/
+service/ENV/
+service/.venv/
+
+# Testing / coverage
+service/htmlcov/
+service/.tox/
+service/.coverage
+service/.coverage.*
+service/.cache
+service/nosetests.xml
+service/coverage.xml
+service/*.cover
+service/.pytest_cache/
+
+# Database
+service/*.db
+service/*.sqlite
+service/*.sqlite3

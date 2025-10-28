@@ -1,0 +1,32 @@
+services:
+  service:
+    build:
+      context: ./service
+      dockerfile: Dockerfile
+    container_name: docbot-service
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./service:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - docbot-network
+    restart: unless-stopped
+
+  ui:
+    build:
+      context: ./ui
+      dockerfile: Dockerfile
+    container_name: docbot-ui
+    ports:
+      - "3000:80"
+    depends_on:
+      - service
+    networks:
+      - docbot-network
+    restart: unless-stopped
+
+networks:
+  docbot-network:
+    driver: bridge
